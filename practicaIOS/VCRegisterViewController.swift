@@ -34,7 +34,10 @@ class VCRegisterViewController: UIViewController {
     @IBAction func clickRegister(){
         Auth.auth().createUser(withEmail: (txtEmail?.text)!, password: (txtPassword?.text)!){
             (email, error)in
-            if email != nil{
+            if self.txtPassword?.text != self.txtRePassword?.text{
+                print("Las contraseñas no son iguales")
+            }
+            else if email != nil && self.txtUser?.text != nil{
                 print ("Te registraste")
                 
                 DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document((email?.uid)!).setData(["email"
