@@ -33,6 +33,8 @@ class ViewController: UIViewController {
                 
                 ruta?.getDocument { (document, error) in
                     if document != nil{
+                        
+                        DataHolder.sharedInstance.miPerfil.setMap(valores: (document?.data())!)
                     
                         self.performSegue(withIdentifier: "transitionLogin", sender: self)
                         

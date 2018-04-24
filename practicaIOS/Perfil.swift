@@ -19,7 +19,8 @@ class Perfil: NSObject {
         sNombre = valores["nombre"] as? String
         sEmail = valores["email"] as? String
         
-        print(sNombre)
+        print("Nombre: ",sNombre)
+        print("Email: ",sEmail)
     }
     
     func getMap() -> [String:Any] {
