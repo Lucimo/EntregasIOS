@@ -10,10 +10,25 @@ import UIKit
 
 class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSource{
     @IBOutlet var tbMiTabla:UITableView?
+    var arCiudades:[City] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        DataHolder.sharedInstance.fireStoreDB?.collection("cities").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let ciudad:City = City()
+                    ciudad.sID=document.documentID
+                    ciudad.setMap(valores: document.data())
+                    self.arCiudades.append(ciudad)
+                    print("\(document.documentID) => \(document.data())")
+                }
+                print("----->>>> ",self.arCiudades.count)
+            }
+            self.tbMiTabla?.reloadData()
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -21,11 +36,18 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        print("Cantidad de filas",self.arCiudades.count)
+        return self.arCiudades.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:TVCMiCelda = tableView.dequeueReusableCell(withIdentifier: "micelda1")as! TVCMiCelda
+        
+        cell.lblNombre?.text = self.arCiudades[indexPath.row].sName
+        
+        /*
         if (indexPath.row==0){
             cell.lblNombre?.text = "Hey"
         }
@@ -42,7 +64,7 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
             cell.lblNombre?.text = "Hiya"
         }
         
-        
+        */
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
