@@ -35,6 +35,7 @@ class ViewController: UIViewController {
                     if document != nil{
                     
                         self.performSegue(withIdentifier: "transitionLogin", sender: self)
+                        
                     }
                     else{
                         print(error!)
