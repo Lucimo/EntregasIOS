@@ -8,12 +8,16 @@
 
 import UIKit
 
-class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSource{
+class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSource, DataHolderDelegate{
     @IBOutlet var tbMiTabla:UITableView?
     var arCiudades:[City] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DataHolder.sharedInstance.descargarCiudades(delegate: self)
+        
+        /*
         DataHolder.sharedInstance.fireStoreDB?.collection("cities").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -30,11 +34,18 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
             self.tbMiTabla?.reloadData()
         }
         // Do any additional setup after loading the view.
+ */
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func DHDDescargaCiudadesCompleta(blnFin: Bool){
+        if blnFin{
+        //    self.tableView(<#T##tableView: UITableView##UITableView#>, cellForRowAt: <#T##IndexPath#>)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

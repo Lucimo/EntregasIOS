@@ -16,6 +16,9 @@ class DataHolder: NSObject {
     
     var miPerfil:Perfil = Perfil()
     
+    var arCiudades:[City] = []
+    
+    
     func initFirebase(){
         FirebaseApp.configure()
         fireStoreDB = Firestore.firestore()
@@ -55,6 +58,32 @@ class DataHolder: NSObject {
             "population": 21500000
             ])*/
         }
+    func descargarCiudades(delegate:DataHolderDelegate){
+       
+        DataHolder.sharedInstance.fireStoreDB?.collection("cities").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                delegate.DHDDescargaCiudadesCompleta!(blnFin: false)
+            } else {
+                self.arCiudades=[]
+                for document in querySnapshot!.documents {
+                    let ciudad:City = City()
+                    ciudad.sID=document.documentID
+                    ciudad.setMap(valores: document.data())
+                    self.arCiudades.append(ciudad)
+                    print("\(document.documentID) => \(document.data())")
+                }
+                print("----->>>> ",self.arCiudades.count)
+                delegate.DHDDescargaCiudadesCompleta!(blnFin: true)
+            }
+            //self.tbMiTabla?.reloadData()
+        }
+        
+    }
+   
  
+}
+@objc protocol DataHolderDelegate{
+    @objc optional func DHDDescargaCiudadesCompleta(blnFin:Bool)
 }
 
