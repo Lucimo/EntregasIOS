@@ -23,7 +23,14 @@ class DataHolder: NSObject {
         FirebaseApp.configure()
         fireStoreDB = Firestore.firestore()
         
-       /** let citiesRef = fireStoreDB?.collection("cities")
+        let citiesRef = fireStoreDB?.collection("coordenadas")
+        
+        citiesRef?.document().setData([
+            "coordenadas": [90, 00],
+            "titulo": "Testigo segundo try"
+            ]
+        )
+       /**
         
         citiesRef?.document("SF").setData([
             "name": "San Francisco",
@@ -86,4 +93,3 @@ class DataHolder: NSObject {
 @objc protocol DataHolderDelegate{
     @objc optional func DHDDescargaCiudadesCompleta(blnFin:Bool)
 }
-

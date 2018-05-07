@@ -10,7 +10,7 @@ import UIKit
 
 class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSource, DataHolderDelegate{
     @IBOutlet var tbMiTabla:UITableView?
-    var arCiudades:[City] = []
+    //var arCiudades:[City] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +43,19 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
     }
     
     func DHDDescargaCiudadesCompleta(blnFin: Bool){
-        if blnFin{
-        //    self.tableView(<#T##tableView: UITableView##UITableView#>, cellForRowAt: <#T##IndexPath#>)
+        if blnFin == true{
+            self.refreshUI()
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Cantidad de filas",self.arCiudades.count)
-        return self.arCiudades.count
+        return DataHolder.sharedInstance.arCiudades.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:TVCMiCelda = tableView.dequeueReusableCell(withIdentifier: "micelda1")as! TVCMiCelda
         
-        cell.lblNombre?.text = self.arCiudades[indexPath.row].sName
+        cell.lblNombre?.text = DataHolder.sharedInstance.arCiudades[indexPath.row].sName
         
         /*
         if (indexPath.row==0){
@@ -78,9 +77,10 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
         */
         return cell
     }
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("HE SELECCIONADO LA POSICION: ", indexPath.row);
-    }
+    }*/
 
     /*
     // MARK: - Navigation
@@ -90,6 +90,11 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+     */
+    func refreshUI() {
+        DispatchQueue.main.async(execute: {
+            self.tbMiTabla?.reloadData()
+        })
+    }
 
 }
