@@ -10,11 +10,12 @@
 import UIKit
 import MapKit
 import CoreLocation
-class VCMap: UIViewController, CLLocationManagerDelegate, DataHolderDelegate{
+class VCMap: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var miMapa:MKMapView?
     var locationManager:CLLocationManager?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         /*DataHolder.sharedInstance.descargarCiudades(delegate: self)
         
         self.agregarPin(titulo: "HOLA", latitude: 42, longitud: -3)
@@ -39,11 +40,7 @@ class VCMap: UIViewController, CLLocationManagerDelegate, DataHolderDelegate{
         miMapa?.addAnnotation(miPin)
     }
     
-    func DHDDescargaCiudadesCompleta(blnFin: Bool){
-        if blnFin{
-            self.agregarPin(titulo: "String", latitude: 42, longitud: -3)
-        }
-    }
+
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(locations[0])

@@ -14,7 +14,8 @@ class Perfil: NSObject {
     
     var sNombre:String?
     var sEmail:String?
-    
+    var bLat = ""
+    var bLong = ""
     
     
     func setMap(valores:[String:Any]) {

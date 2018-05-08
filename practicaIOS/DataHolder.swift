@@ -16,6 +16,7 @@ class DataHolder: NSObject {
     
     var miPerfil:Perfil = Perfil()
     
+    
     var arCiudades:[City] = []
     
     var user:String = ""

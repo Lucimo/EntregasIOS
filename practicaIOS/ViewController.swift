@@ -25,11 +25,9 @@ class ViewController: UIViewController, DataHolderDelegate {
     }
 
     @IBAction func clicloginevent(){
-        
-        print("Va a ir a dataholder")
+    
         DataHolder.sharedInstance.Login(delegate: self, sEmail: (txtuser?.text)!, sContrasena: (txtpass?.text)!)
-        print("Vuelve a Viewcontroller")
-        
+ 
         /*
         print("Hola " + (txtuser?.text)!)
         
