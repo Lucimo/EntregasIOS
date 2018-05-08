@@ -9,7 +9,7 @@
 import Firebase
 import UIKit
 
-class VCRegisterViewController: UIViewController {
+class VCRegisterViewController: UIViewController, DataHolderDelegate {
 
     @IBOutlet var txtEmail:UITextField?
     @IBOutlet var txtUser:UITextField?
@@ -20,6 +20,11 @@ class VCRegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtEmail?.text = DataHolder.sharedInstance.email
+        txtUser?.text = DataHolder.sharedInstance.user
+        txtPassword?.text = DataHolder.sharedInstance.pass
+        txtRePassword?.text = DataHolder.sharedInstance.repass
+        
         //RECUERDA
         //txtUser?.text = DataHolder.shareInstance.sNick
         // Do any additional setup after loading the view.
@@ -32,6 +37,16 @@ class VCRegisterViewController: UIViewController {
     
 
     @IBAction func clickRegister(){
+        
+        DataHolder.sharedInstance.email = (txtEmail?.text)!
+        DataHolder.sharedInstance.user = (txtUser?.text)!
+        DataHolder.sharedInstance.pass = (txtPassword?.text)!
+        DataHolder.sharedInstance.repass = (txtRePassword?.text)!
+        
+        print("Va a ir a dataholder")
+        DataHolder.sharedInstance.Registro(delegate: self, sEmail: (txtEmail?.text)!, sPass: (txtPassword?.text)!)
+        print("Vuelve a Viewcontroller")
+        /*
         Auth.auth().createUser(withEmail: (txtEmail?.text)!, password: (txtPassword?.text)!){
             (email, error)in
             if self.txtPassword?.text != self.txtRePassword?.text{
@@ -46,6 +61,11 @@ class VCRegisterViewController: UIViewController {
             else{
                 print(error!)
             }
+        }*/
+    }
+    func dataHolderRegister(blfin: Bool) {
+        if blfin==true{
+            self.performSegue(withIdentifier: "trregistro", sender: self)
         }
     }
     /*

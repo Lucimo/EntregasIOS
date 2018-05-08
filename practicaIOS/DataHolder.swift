@@ -18,6 +18,10 @@ class DataHolder: NSObject {
     
     var arCiudades:[City] = []
     
+    var user:String = ""
+    var email:String = ""
+    var pass:String = ""
+    var repass:String = ""
     
     func initFirebase(){
         FirebaseApp.configure()
@@ -87,9 +91,27 @@ class DataHolder: NSObject {
         }
         
     }
+    func Registro(delegate:DataHolderDelegate,sEmail:String, sPass:String) {
+        Auth.auth().createUser(withEmail: email, password: pass){
+            (email, error)in
+            if self.pass != self.repass{
+                print("Las contraseñas no son iguales")
+            }
+            else if self.email != "" && self.user != ""{
+                print ("Te registraste")
+                
+                DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document((email?.uid)!).setData(["email"
+                    :self.email, "nombre":self.user])
+            }
+            else{
+                print(error!)
+            }
+        }
+        
+    }
    
  
 }
 @objc protocol DataHolderDelegate{
     @objc optional func DHDDescargaCiudadesCompleta(blnFin:Bool)
-}
+    @objc optional func dataHolderRegister(blfin:Bool)}
