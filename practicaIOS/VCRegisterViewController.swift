@@ -43,9 +43,9 @@ class VCRegisterViewController: UIViewController, DataHolderDelegate {
         DataHolder.sharedInstance.pass = (txtPassword?.text)!
         DataHolder.sharedInstance.repass = (txtRePassword?.text)!
         
-        print("Va a ir a dataholder")
+        
         DataHolder.sharedInstance.Registro(delegate: self, sEmail: (txtEmail?.text)!, sPass: (txtPassword?.text)!)
-        print("Vuelve a Viewcontroller")
+        
         /*
         Auth.auth().createUser(withEmail: (txtEmail?.text)!, password: (txtPassword?.text)!){
             (email, error)in

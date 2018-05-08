@@ -9,10 +9,11 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, DataHolderDelegate {
     @IBOutlet var btnLoguear:UIButton?
     @IBOutlet var txtuser:UITextField?
     @IBOutlet var txtpass:UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -24,6 +25,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func clicloginevent(){
+        
+        print("Va a ir a dataholder")
+        DataHolder.sharedInstance.Login(delegate: self, sEmail: (txtuser?.text)!, sContrasena: (txtpass?.text)!)
+        print("Vuelve a Viewcontroller")
+        
+        /*
         print("Hola " + (txtuser?.text)!)
         
         Auth.auth().signIn(withEmail: (txtuser?.text)!, password: (txtpass?.text)!) {(email, error) in
@@ -49,9 +56,14 @@ class ViewController: UIViewController {
                 print(error!)
             }
         }
-        
+        */
         //if txtuser?.text == "Lucas" && txtpass?.text == "pass" {
       //      self.performSegue(withIdentifier: "transitionLogin", sender: self)       }
+    }
+    func dataHolderLogin(blfin: Bool) {
+        if blfin==true{
+            self.performSegue(withIdentifier: "transitionLogin", sender: self)
+        }
     }
 }
 

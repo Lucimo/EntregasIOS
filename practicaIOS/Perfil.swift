@@ -10,6 +10,8 @@ import UIKit
 
 class Perfil: NSObject {
 
+    
+    
     var sNombre:String?
     var sEmail:String?
     

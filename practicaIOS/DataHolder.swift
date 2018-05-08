@@ -91,6 +91,34 @@ class DataHolder: NSObject {
         }
         
     }
+    func Login(delegate:DataHolderDelegate, sEmail:String, sContrasena:String) {
+        print("Hola " + sEmail)
+        
+        Auth.auth().signIn(withEmail: sEmail, password: sContrasena) {(email, error) in
+            if sEmail != ""{
+                
+                let ruta = DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document((email?.uid)!)
+                
+                ruta?.getDocument { (document, error) in
+                    if document != nil{
+                        
+                        DataHolder.sharedInstance.miPerfil.setMap(valores: (document?.data())!)
+                        
+                        delegate.dataHolderLogin!(blfin: true)
+                        
+                    }
+                    else{
+                        print(error!)
+                    }
+                }
+            }
+            else{
+                print("Fallo al logearse")
+                delegate.dataHolderLogin!(blfin: false)
+            }
+        }
+    }
+    
     func Registro(delegate:DataHolderDelegate,sEmail:String, sPass:String) {
         Auth.auth().createUser(withEmail: email, password: pass){
             (email, error)in
@@ -102,9 +130,11 @@ class DataHolder: NSObject {
                 
                 DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document((email?.uid)!).setData(["email"
                     :self.email, "nombre":self.user])
+                delegate.dataHolderRegister!(blfin: true)
             }
             else{
                 print(error!)
+                delegate.dataHolderRegister!(blfin: false)
             }
         }
         
@@ -114,4 +144,6 @@ class DataHolder: NSObject {
 }
 @objc protocol DataHolderDelegate{
     @objc optional func DHDDescargaCiudadesCompleta(blnFin:Bool)
-    @objc optional func dataHolderRegister(blfin:Bool)}
+    @objc optional func dataHolderRegister(blfin:Bool)
+    @objc optional func dataHolderLogin(blfin:Bool)
+}
