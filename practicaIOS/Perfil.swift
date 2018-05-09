@@ -10,10 +10,11 @@ import UIKit
 
 class Perfil: NSObject {
 
-    
+    let idsRutaimagen="sRutaimagen"
     
     var sNombre:String?
     var sEmail:String?
+    var sRutaimagen:String?
     var bLat = ""
     var bLong = ""
     
@@ -21,7 +22,11 @@ class Perfil: NSObject {
     func setMap(valores:[String:Any]) {
         sNombre = valores["nombre"] as? String
         sEmail = valores["email"] as? String
+        sRutaimagen = valores[idsRutaimagen] as? String
         
+        if sRutaimagen == nil{
+            sRutaimagen = "gs://cumbiondeprueba.appspot.com/imagenes/Unknown.jpg"
+        }
         print("Nombre: ",sNombre)
         print("Email: ",sEmail)
     }
@@ -29,7 +34,8 @@ class Perfil: NSObject {
     func getMap() -> [String:Any] {
         return[
             "nombre": sNombre as Any,
-            "email": sEmail as Any
+            "email": sEmail as Any,
+            idsRutaimagen: self.sRutaimagen as Any
         ]
     }
     

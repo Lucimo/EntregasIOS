@@ -16,6 +16,7 @@ class City: NSObject {
     let IDSTATE = "state"
     let IDfoto = "foto"
     
+    
     var sID:String?
     var sCapital:String?
     var sCountry:String?
