@@ -14,7 +14,7 @@ class City: NSObject {
     let IDNAME = "name"
     let IDPOPULATION = "population"
     let IDSTATE = "state"
-    
+    let IDfoto = "foto"
     
     var sID:String?
     var sCapital:String?
@@ -22,14 +22,14 @@ class City: NSObject {
     var sName:String?
     var iPop:Int?
     var sState:String?
-    
+    var sfoto:String?
     func setMap(valores:[String:Any]) {
         sCapital = valores[IDCAPITAL] as? String
         sCountry = valores[IDCOUNTY] as? String
         sName = valores[IDNAME] as? String
         iPop = valores[IDPOPULATION] as? Int
         sState = valores[IDSTATE] as? String
-        
+        sfoto = valores[IDfoto] as? String
         
         
     }

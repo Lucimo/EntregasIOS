@@ -57,7 +57,9 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
         let cell:TVCMiCelda = tableView.dequeueReusableCell(withIdentifier: "micelda1")as! TVCMiCelda
         
         cell.lblNombre?.text = DataHolder.sharedInstance.arCiudades[indexPath.row].sName
+        cell.descargarImagenes(url: DataHolder.sharedInstance.arCiudades[indexPath.row].sfoto!)
         
+        return cell
         /*
         if (indexPath.row==0){
             cell.lblNombre?.text = "Hey"
@@ -76,7 +78,7 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
         }
         
         */
-        return cell
+        
     }
     /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
