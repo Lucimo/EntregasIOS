@@ -15,8 +15,8 @@ class DataHolder: NSObject {
     var fireStoreDB:Firestore?
     
     var miPerfil:Perfil = Perfil()
-    
-    
+    var firStorage:Storage?
+    var HMIMG :[String: UIImage]=[:]
     var arCiudades:[City] = []
     
     var user:String = ""
@@ -27,7 +27,7 @@ class DataHolder: NSObject {
     func initFirebase(){
         FirebaseApp.configure()
         fireStoreDB = Firestore.firestore()
-        
+        firStorage = Storage.storage()
         let citiesRef = fireStoreDB?.collection("coordenadas")
         
         citiesRef?.document().setData([
