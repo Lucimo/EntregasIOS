@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class DataHolder: NSObject {
     static let sharedInstance:DataHolder = DataHolder()
@@ -15,8 +16,8 @@ class DataHolder: NSObject {
     var fireStoreDB:Firestore?
     
     var miPerfil:Perfil = Perfil()
-    var firStorage:Storage?
-    var HMIMG :[String: UIImage]=[:]
+    var fireStorage:Storage?
+    var HMIMG :[String: UIImage]?=[:]
     var arCiudades:[City] = []
     
     var user:String = ""
@@ -27,7 +28,7 @@ class DataHolder: NSObject {
     func initFirebase(){
         FirebaseApp.configure()
         fireStoreDB = Firestore.firestore()
-        firStorage = Storage.storage()
+        fireStorage = Storage.storage()
         let citiesRef = fireStoreDB?.collection("coordenadas")
         
         citiesRef?.document().setData([
@@ -140,6 +141,30 @@ class DataHolder: NSObject {
         }
         
     }
+    
+    func executeimagen(clave:String, delegate:DataHolderDelegate){
+        if self.HMIMG![clave] == nil{
+            let gsReference = self.fireStorage?.reference(forURL: clave)
+            gsReference?.getData(maxSize: 1 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print(error!)
+                }
+                else{
+                    let imgDescargada = UIImage(data: data!)
+                    self.HMIMG?[clave] = imgDescargada
+                    delegate.imagen!(imagen: imgDescargada!)
+                    
+                }
+            }
+            )
+            
+        }
+        else{
+            delegate.imagen!(imagen:self.HMIMG![clave]!)
+        }
+        print("llego")
+        
+    }
    
  
 }
@@ -147,4 +172,5 @@ class DataHolder: NSObject {
     @objc optional func DHDDescargaCiudadesCompleta(blnFin:Bool)
     @objc optional func dataHolderRegister(blfin:Bool)
     @objc optional func dataHolderLogin(blfin:Bool)
+    @objc optional func imagen(imagen:UIImage)
 }

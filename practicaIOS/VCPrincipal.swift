@@ -17,6 +17,7 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
         
         DataHolder.sharedInstance.descargarCiudades(delegate: self)
         
+        
         /*
         DataHolder.sharedInstance.fireStoreDB?.collection("cities").getDocuments() { (querySnapshot, err) in
             if let err = err {
