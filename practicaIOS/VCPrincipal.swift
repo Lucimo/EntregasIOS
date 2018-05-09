@@ -10,6 +10,8 @@ import UIKit
 
 class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSource, DataHolderDelegate{
     @IBOutlet var tbMiTabla:UITableView?
+   
+    
     //var arCiudades:[City] = []
     
     override func viewDidLoad() {
@@ -96,5 +98,10 @@ class  VCPrincipal: UIViewController , UITableViewDelegate, UITableViewDataSourc
             self.tbMiTabla?.reloadData()
         })
     }
-
+    func descargarImagenes(uri:String){
+  
+    
+    
 }
+}
+

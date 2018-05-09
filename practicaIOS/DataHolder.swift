@@ -9,20 +9,22 @@
 import UIKit
 import Firebase
 
+
 class DataHolder: NSObject {
     static let sharedInstance:DataHolder = DataHolder()
     
+    
+    var HMIMG :[String: UIImage]=[:]
     var fireStoreDB:Firestore?
-    
+    var firStorage:Storage?
     var miPerfil:Perfil = Perfil()
-    
     var arCiudades:[City] = []
     
     
     func initFirebase(){
         FirebaseApp.configure()
         fireStoreDB = Firestore.firestore()
-        
+        firStorage = Storage.storage()
         let citiesRef = fireStoreDB?.collection("coordenadas")
         
         citiesRef?.document().setData([
