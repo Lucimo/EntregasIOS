@@ -131,7 +131,7 @@ class DataHolder: NSObject {
                 print ("Te registraste")
                 
                 DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document((email?.uid)!).setData(["email"
-                    :self.email, "nombre":self.user])
+                    :self.email, "nombre":self.user, "RutaImagen":"gs://cumbiondeprueba.appspot.com/imagenes/Unknown.jpg"])
                 delegate.dataHolderRegister!(blfin: true)
             }
             else{
@@ -139,7 +139,6 @@ class DataHolder: NSObject {
                 delegate.dataHolderRegister!(blfin: false)
             }
         }
-        
     }
     
     func executeimagen(clave:String, delegate:DataHolderDelegate){
