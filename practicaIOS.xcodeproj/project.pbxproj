@@ -20,6 +20,7 @@
 		33605DD12080F4E200E048F3 /* VCPrincipal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33605DD02080F4E200E048F3 /* VCPrincipal.swift */; };
 		33605DD32081018900E048F3 /* TVCMiCelda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33605DD22081018900E048F3 /* TVCMiCelda.swift */; };
 		6F2CAB422088A80D00ABF01A /* Perfil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CAB412088A80D00ABF01A /* Perfil.swift */; };
+		6F491BCF20B30EA000F9BDCF /* VCSelecImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F491BCE20B30EA000F9BDCF /* VCSelecImg.swift */; };
 		6FDA9B86208F573A008109A0 /* VCMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA9B85208F573A008109A0 /* VCMap.swift */; };
 		6FDA9B88208F5FF8008109A0 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA9B87208F5FF8008109A0 /* City.swift */; };
 		FA7034F94F3628EB44793064 /* Pods_practicaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB176FDD6A8A07D13505D56 /* Pods_practicaIOS.framework */; };
@@ -42,6 +43,7 @@
 		33605DD22081018900E048F3 /* TVCMiCelda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCMiCelda.swift; sourceTree = "<group>"; };
 		6AB176FDD6A8A07D13505D56 /* Pods_practicaIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_practicaIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F2CAB412088A80D00ABF01A /* Perfil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perfil.swift; sourceTree = "<group>"; };
+		6F491BCE20B30EA000F9BDCF /* VCSelecImg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSelecImg.swift; sourceTree = "<group>"; };
 		6FDA9B85208F573A008109A0 /* VCMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMap.swift; sourceTree = "<group>"; };
 		6FDA9B87208F5FF8008109A0 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		78A212340C4A1424F4D87A44 /* Pods-practicaIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-practicaIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-practicaIOS/Pods-practicaIOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				6F2CAB412088A80D00ABF01A /* Perfil.swift */,
 				6FDA9B85208F573A008109A0 /* VCMap.swift */,
 				6FDA9B87208F5FF8008109A0 /* City.swift */,
+				6F491BCE20B30EA000F9BDCF /* VCSelecImg.swift */,
 			);
 			path = practicaIOS;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				335A6CEE207E4A04003C9647 /* ViewController.swift in Sources */,
 				6F2CAB422088A80D00ABF01A /* Perfil.swift in Sources */,
 				333A39EA20861A4B008C6548 /* DataHolder.swift in Sources */,
+				6F491BCF20B30EA000F9BDCF /* VCSelecImg.swift in Sources */,
 				33605DD12080F4E200E048F3 /* VCPrincipal.swift in Sources */,
 				33605DCF2080F2A700E048F3 /* VCRegisterViewController.swift in Sources */,
 				6FDA9B88208F5FF8008109A0 /* City.swift in Sources */,
