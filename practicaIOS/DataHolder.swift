@@ -14,6 +14,7 @@ class DataHolder: NSObject {
     static let sharedInstance:DataHolder = DataHolder()
     
     var fireStoreDB:Firestore?
+    var firStorageRef:StorageReference?
     
     var miPerfil:Perfil = Perfil()
     var fireStorage:Storage?
@@ -29,13 +30,14 @@ class DataHolder: NSObject {
         FirebaseApp.configure()
         fireStoreDB = Firestore.firestore()
         fireStorage = Storage.storage()
-        let citiesRef = fireStoreDB?.collection("coordenadas")
+        firStorageRef = fireStorage?.reference()
+        /*let citiesRef = fireStoreDB?.collection("coordenadas")
         
         citiesRef?.document().setData([
             "coordenadas": [90, 00],
             "titulo": "Testigo segundo try"
             ]
-        )
+        )*/
        /**
         
         citiesRef?.document("SF").setData([

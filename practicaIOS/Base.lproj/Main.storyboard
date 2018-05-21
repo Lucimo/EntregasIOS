@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4dG-tF-4QQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Selec Img-->
+        <!--Item-->
         <scene sceneID="Roe-rA-hwD">
             <objects>
                 <viewController id="4dG-tF-4QQ" customClass="VCSelecImg" customModule="practicaIOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,11 +43,15 @@
                                 <rect key="frame" x="132" y="584" width="111" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Subir a Firebase"/>
+                                <connections>
+                                    <action selector="accionBotonSubir" destination="4dG-tF-4QQ" eventType="touchUpInside" id="BJu-0p-TnX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="iVo-zB-jCb"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="dL3-eY-QJE"/>
                     <connections>
                         <outlet property="imgView" destination="9bP-2F-3wh" id="eZr-jI-P6E"/>
                     </connections>
@@ -343,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HqI-dO-9kC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2469.5999999999999" y="36.431784107946029"/>
+            <point key="canvasLocation" x="2998" y="242"/>
         </scene>
         <!--Item-->
         <scene sceneID="nkL-LM-WUw">
@@ -373,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h1P-MU-uw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3359" y="446"/>
+            <point key="canvasLocation" x="2254" y="-52"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qu4-Fo-8sY">
@@ -388,6 +392,7 @@
                         <segue destination="JhW-fN-Dpz" kind="relationship" relationship="viewControllers" id="sWA-Er-MRh"/>
                         <segue destination="jRc-I5-ylP" kind="relationship" relationship="viewControllers" id="vxg-sH-XNi"/>
                         <segue destination="cMZ-ah-iPh" kind="relationship" relationship="viewControllers" id="gKF-oY-UnX"/>
+                        <segue destination="4dG-tF-4QQ" kind="relationship" relationship="viewControllers" id="Fxy-6F-sWo"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fyx-c6-40y" userLabel="First Responder" sceneMemberID="firstResponder"/>
