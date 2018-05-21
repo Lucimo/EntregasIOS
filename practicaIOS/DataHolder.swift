@@ -93,6 +93,10 @@ class DataHolder: NSObject {
         }
         
     }
+    
+    func descargarImagenPerfil(clave:String, delegate:DataHolderDelegate) {
+        
+    }
     func Login(delegate:DataHolderDelegate, sEmail:String, sContrasena:String) {
         print("Hola " + sEmail)
         
@@ -172,4 +176,5 @@ class DataHolder: NSObject {
     @objc optional func dataHolderRegister(blfin:Bool)
     @objc optional func dataHolderLogin(blfin:Bool)
     @objc optional func imagen(imagen:UIImage)
+    @objc optional func imagenPerfil(imagen:UIImage)
 }

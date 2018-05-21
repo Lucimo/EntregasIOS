@@ -8,14 +8,24 @@
 
 import UIKit
 
-class VCCollectionsViewController: UIViewController {
+class VCCollectionsViewController: UIViewController, DataHolderDelegate {
 
+    @IBOutlet var imagenPerfil:UIImageView?
+    var imagenDelPerfil:UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         // Do any additional setup after loading the view.
     }
-
+    
+    func descargarImagenes(url:String){
+        self.imagenPerfil?.image = nil
+        
+        DataHolder.sharedInstance.descargarImagenPerfil(clave: url, delegate: self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,5 +41,9 @@ class VCCollectionsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    func imagenPerfil(imagen: UIImage) {
+        self.imagenPerfil?.image = imagen
+    }
 
 }
