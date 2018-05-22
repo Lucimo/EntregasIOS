@@ -99,12 +99,13 @@ class DataHolder: NSObject {
     func descargarImagenPerfil(clave:String, delegate:DataHolderDelegate) {
         
     }
+    var sID:String = ""
     func Login(delegate:DataHolderDelegate, sEmail:String, sContrasena:String) {
         print("Hola " + sEmail)
         
         Auth.auth().signIn(withEmail: sEmail, password: sContrasena) {(email, error) in
             if sEmail != ""{
-                
+                self.sID = (email?.uid)!
                 let ruta = DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document((email?.uid)!)
                 
                 ruta?.getDocument { (document, error) in
@@ -137,7 +138,7 @@ class DataHolder: NSObject {
                 print ("Te registraste")
                 
                 DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document((email?.uid)!).setData(["email"
-                    :self.email, "nombre":self.user, "RutaImagen":"gs://cumbiondeprueba.appspot.com/imagenes/Unknown.jpg"])
+                    :self.email, "nombre":self.user, "RutaImagen":"imagenes/Unknown.jpg"])
                 delegate.dataHolderRegister!(blfin: true)
             }
             else{
@@ -169,6 +170,19 @@ class DataHolder: NSObject {
         }
         print("llego")
         
+    }
+    
+    func subirImagen(delegate:DataHolderDelegate, imgData:NSData){
+        let imageRef = DataHolder.sharedInstance.firStorageRef?.child("imagenes/" + miPerfil.sNombre! + ".jpg")
+        print("imagenes/" + miPerfil.sNombre! + ".jpg")
+        DataHolder.sharedInstance.fireStoreDB?.collection("Perfiles").document(sID).setData(["email":self.email, "nombre":self.user, "RutaImagen":"imagenes/" + miPerfil.sNombre! + ".jpg"])
+        
+        let uploadTask = imageRef?.putData(imgData as! Data, metadata:nil){ (metadata,error) in
+            guard let metadata = metadata else{
+                return
+            }
+            let downloadURL = metadata.downloadURL
+        }
     }
    
  

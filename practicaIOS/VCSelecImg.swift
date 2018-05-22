@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VCSelecImg: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class VCSelecImg: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  DataHolderDelegate{
     @IBOutlet var imgView:UIImageView?
     let imagePicker = UIImagePickerController()
     
@@ -41,14 +41,7 @@ class VCSelecImg: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.present(imagePicker, animated: true, completion: nil)
     }
     @IBAction func accionBotonSubir(){
-        let imageRef = DataHolder.sharedInstance.firStorageRef?.child("imagenes/miimagen.jpg")
-        
-        let uploadTask = imageRef?.putData(imgData as! Data, metadata:nil){ (metadata,error) in
-            guard let metadata = metadata else{
-                return
-            }
-            let downloadURL = metadata.downloadURL
-        }
+        DataHolder.sharedInstance.subirImagen(delegate: self, imgData:imgData!)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
@@ -62,6 +55,7 @@ class VCSelecImg: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     /*
     // MARK: - Navigation
 
